@@ -1,0 +1,14 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+Style/Documentation:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
+Rails/FilePath:
+  EnforcedStyle: arguments
+RSpec/Capybara/FeatureMethods:
+  EnabledMethods: [feature, scenario]
