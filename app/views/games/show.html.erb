@@ -1,4 +1,17 @@
-<%= content_tag(:h1, 'checkers!') %>
-<%= content_tag(:div, data: { controller: 'drag'} ) do %>
-  hi
+<%= content_tag(:div, data: { controller: 'drag'}, class: 'board') do %>
+  <% 10.times do %>
+    <%= content_tag(
+      :div, '',
+      class: 'space',
+      data: { action: 'dragover->drag#allowDrop drop->drag#drop'},
+      draggable: true
+    ) %>
+  <% end %>
+  <%= content_tag(
+    :div, '',
+    id: 'checker-1',
+    class: 'checker',
+    data: { action: 'dragstart->drag#drag'},
+    draggable: true
+  ) %>
 <% end %>
