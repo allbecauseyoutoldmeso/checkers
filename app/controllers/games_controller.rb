@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class GamesController < ApplicationController
-  def show; end
+  def show
+    @board = Board.new
+  end
 
   def update
     ActionCable.server.broadcast('game_channel', { cell: game_params[:cell] })

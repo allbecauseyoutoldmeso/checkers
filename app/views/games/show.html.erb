@@ -1,14 +1,22 @@
-<%= content_tag(:div, data: { controller: 'drag'}, class: 'board') do %>
-  <% 10.times do |index| %>
-    <%= content_tag(
-      :div, '',
-      class: 'cell',
-      id: "cell-#{index}",
-      data: { action: 'dragover->drag#allowDrop drop->drag#drop'},
-    ) %>
+<%= content_tag(:div, data: { controller: 'drag'}) do %>
+  <%= content_tag(:div, class: 'flex-direction-column board') do %>
+    <% @board.rows.each do |row| %>
+      <%= content_tag(:div, class: 'flex-direction-row') do %>
+        <% row.each do |cell| %>
+          <%= content_tag(
+            :div,
+            "cell-#{cell.x}-#{cell.y}",
+            class: 'cell',
+            id: "cell-#{cell.x}-#{cell.y}",
+            data: { action: 'dragover->drag#allowDrop drop->drag#drop'},
+          ) %>
+        <% end %>
+      <% end %>
+    <% end %>
   <% end %>
   <%= content_tag(
-    :div, '',
+    :div,
+    '',
     id: 'checker-1',
     class: 'checker',
     data: { drag_target: 'checker' },
