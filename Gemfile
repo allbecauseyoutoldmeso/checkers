@@ -18,11 +18,11 @@ group :development, :test do
   gem 'rubocop', '~> 1.23'
   gem 'rubocop-rails', '~> 2.12'
   gem 'rubocop-rspec', '~> 2.6'
+  gem 'rspec-rails', '~> 5.0'
 end
 
 group :development do
   gem 'listen', '~> 3.3'
-  gem 'rack-mini-profiler', '~> 2.0'
   gem 'spring'
   gem 'web-console', '>= 4.1.0'
 end
