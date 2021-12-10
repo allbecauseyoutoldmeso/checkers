@@ -9,3 +9,15 @@
     <% end %>
   <% end %>
 <% end %>
+
+
+
+
+<%= form_for @game do |f| %>
+  <%= f.fields_for :board do |b| %>
+    <%= b.fields_for :cells do |c| %>
+      <%= c.number_field :checker_id %>
+    <% end %>
+  <% end %>
+  <%= f.submit %>
+<% end %>
