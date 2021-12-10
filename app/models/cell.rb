@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class Cell
-  include ActiveModel::Model
-
-  attr_accessor(:x, :y)
+class Cell < ApplicationRecord
+  belongs_to :board
+  has_one :checker, dependent: :destroy
 end

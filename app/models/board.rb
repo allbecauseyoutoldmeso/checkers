@@ -1,19 +1,10 @@
 # frozen_string_literal: true
 
-class Board
-  include ActiveModel::Model
+class Board < ApplicationRecord
+  belongs_to :game
+  has_many :cells, dependent: :destroy
 
   def rows
-    row_lengths.each_with_index.map do |length, y|
-      length.times.map do |x|
-        Cell.new(x: x, y: y)
-      end
-    end
-  end
-
-  private
-
-  def row_lengths
-    [1, 2, 3, 4, 13, 12, 11, 10, 10, 11, 12, 13, 4, 3, 2, 1]
+    cells.group_by(&:y).values
   end
 end

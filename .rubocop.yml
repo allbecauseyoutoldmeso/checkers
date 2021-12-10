@@ -8,7 +8,13 @@ Style/GuardClause:
   Enabled: false
 Naming/VariableNumber:
   EnforcedStyle: snake_case
+Metrics/MethodLength:
+  IgnoredMethods: [checker_positions]
 Rails/FilePath:
   EnforcedStyle: arguments
 RSpec/Capybara/FeatureMethods:
   EnabledMethods: [feature, scenario]
+RSpec/MultipleExpectations:
+  Enabled: false
+Rails/CreateTableWithTimestamps:
+  Enabled: false

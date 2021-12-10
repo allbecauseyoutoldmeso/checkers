@@ -1,0 +1,10 @@
+<%= content_tag(
+  :div,
+  class: 'cell',
+  id: dom_id(cell),
+  data: { action: 'dragover->drag#allowDrop drop->drag#drop'},
+) do %>
+  <% if cell.checker.present? %>
+    <%= render(partial: 'checker', locals: { checker: cell.checker }) %>
+  <% end %>
+<% end %>

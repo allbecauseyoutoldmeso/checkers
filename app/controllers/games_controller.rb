@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
 class GamesController < ApplicationController
-  def show
-    @board = Board.new
+  def new; end
+
+  def create
+    game = GameFactory.new.create_game!
+    redirect_to(edit_game_path(game))
+  end
+
+  def edit
+    @game = Game.find(params[:id])
   end
 
   def update

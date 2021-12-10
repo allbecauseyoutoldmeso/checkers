@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root "games#show"
+  root 'games#new'
 
-  resource :game, only: %i[show update]
+  resources :games, only: %i[new create edit update]
 end

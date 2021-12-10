@@ -1,0 +1,8 @@
+<%= content_tag(
+  :div,
+  '',
+  id: dom_id(checker),
+  class: "checker #{checker.colour}",
+  draggable: true,
+  data: { action: 'dragstart->drag#drag'},
+) %>

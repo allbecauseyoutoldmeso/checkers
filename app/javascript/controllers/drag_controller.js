@@ -3,8 +3,6 @@ import { Controller } from 'stimulus'
 import consumer from '../channels/consumer'
 
 export default class extends Controller {
-  static targets = ['checker']
-
   connect() {
     this.channel = consumer.subscriptions.create('GameChannel', {
       received: this.cableReceived.bind(this),
@@ -12,8 +10,14 @@ export default class extends Controller {
   }
 
   cableReceived(data) {
-    const cell = document.getElementById(data.cell)
-    cell.appendChild(this.checkerTarget)
+    // update board
+    // const cell = document.getElementById(data.cell)
+    // cell.appendChild(this.checkerTarget)
+  }
+
+  drag(event) {
+    const checker = event.target
+    event.dataTransfer.setData('checker', checker.id)
   }
 
   allowDrop(event) {
@@ -23,10 +27,16 @@ export default class extends Controller {
   drop(event) {
     event.preventDefault()
 
-    Rails.ajax({
-      type: 'put',
-      url: '/game',
-      data: `game[cell]=${event.target.id}`
-    })
+    const data = event.dataTransfer.getData('checker')
+    const checker = document.getElementById(data)
+    const space = event.target
+    space.appendChild(checker)
+
+    // submit form
+    // Rails.ajax({
+    //   type: 'put',
+    //   url: '/game',
+    //   data: `game[cell]=${event.target.id}`
+    // })
   }
 }
