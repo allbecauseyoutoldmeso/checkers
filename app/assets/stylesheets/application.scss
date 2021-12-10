@@ -1,5 +1,14 @@
 $checker-green: #42f5ce;
-$space-light-grey: #b8b8b8;
+$-light-grey: #b8b8b8;
+
+.flex-direction-row {
+  display: flex;
+}
+
+.flex-direction-column {
+  display: flex;
+  flex-direction: column;
+}
 
 .board {
   margin: 40px;
@@ -15,7 +24,7 @@ $space-light-grey: #b8b8b8;
   background-color: white;
 }
 
-.space {
+.cell {
   height: 25px;
   width: 25px;
   border-radius: 50%;

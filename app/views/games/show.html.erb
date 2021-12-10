@@ -1,17 +1,17 @@
 <%= content_tag(:div, data: { controller: 'drag'}, class: 'board') do %>
-  <% 10.times do %>
+  <% 10.times do |index| %>
     <%= content_tag(
       :div, '',
-      class: 'space',
+      class: 'cell',
+      id: "cell-#{index}",
       data: { action: 'dragover->drag#allowDrop drop->drag#drop'},
-      draggable: true
     ) %>
   <% end %>
   <%= content_tag(
     :div, '',
     id: 'checker-1',
     class: 'checker',
-    data: { action: 'dragstart->drag#drag'},
+    data: { drag_target: 'checker' },
     draggable: true
   ) %>
 <% end %>
