@@ -16,9 +16,8 @@ export default class extends Controller {
   }
 
   drag(event) {
-    const checker = event.target
-    event.dataTransfer.setData('checkerId', checker.id)
-    event.dataTransfer.setData('originCellId', checker.parentElement.id)
+    this.checker = event.target
+    this.originCell = this.checker.parentElement
   }
 
   allowDrop(event) {
@@ -27,20 +26,20 @@ export default class extends Controller {
 
   drop(event) {
     event.preventDefault()
+    this.destinationCell = event.target
+    this.destinationCell.appendChild(this.checker)
+    this.updateInputs()
+    this.submitForm()
+  }
 
-    const checkerId = event.dataTransfer.getData('checkerId')
-    const originCellId = event.dataTransfer.getData('originCellId')
+  updateInputs() {
+    const originInput = this.originCell.getElementsByTagName('input')[0]
+    const destinationInput = this.destinationCell.getElementsByTagName('input')[0]
+    destinationInput.value = originInput.value
+    originInput.value = null
+  }
 
-    const checker = document.getElementById(checkerId)
-    const originCell = document.getElementById(originCellId)
-    const destinationCell = event.target
-
-    destinationCell.appendChild(checker)
-
-    const value = originCell.getElementsByTagName('input')[0].value
-    destinationCell.getElementsByTagName('input')[0].value = value
-    originCell.getElementsByTagName('input')[0].value = null
-
+  submitForm() {
     const form = this.formTarget
 
     Rails.ajax({
