@@ -19,10 +19,10 @@ class GameFactory
   attr_reader :board
 
   def create_checkers!
-    checker_positions.each do |data|
-      data[:coordinates].each do |x, y|
+    checker_positions.each do |colour, coordinates|
+      coordinates.each do |x, y|
         cell = board.cells.find_by(x: x, y: y)
-        Checker.create!(cell: cell, colour: data[:colour])
+        Checker.create!(cell: cell, colour: colour)
       end
     end
   end
@@ -41,30 +41,30 @@ class GameFactory
 
   def checker_positions
     [
-      {
-        colour: 'green',
-        coordinates: [[0, 0], [0, 1], [0, 2], [0, 3], [1, 1], [1, 2], [1, 3], [2, 2], [2, 3], [3, 3]]
-      },
-      {
-        colour: 'yellow',
-        coordinates: [[0, 4], [0, 5], [0, 6], [0, 7], [1, 4], [1, 5], [1, 6], [2, 4], [2, 5], [3, 4]]
-      },
-      {
-        colour: 'red',
-        coordinates: [[0, 8], [0, 9], [0, 10], [0, 11], [1, 9], [1, 10], [1, 11], [2, 10], [2, 11], [3, 11]]
-      },
-      {
-        colour: 'blue',
-        coordinates: [[0, 12], [0, 13], [0, 14], [0, 15], [1, 12], [1, 13], [1, 14], [2, 12], [2, 13], [3, 12]]
-      },
-      {
-        colour: 'black',
-        coordinates: [[9, 4], [9, 5], [9, 6], [9, 7], [10, 4], [10, 5], [10, 6], [11, 4], [11, 5], [12, 4]]
-      },
-      {
-        colour: 'white',
-        coordinates: [[9, 8], [9, 9], [10, 9], [9, 10], [10, 10], [11, 10], [9, 11], [10, 11], [11, 11], [12, 11]]
-      }
+      [
+        'green',
+        [[0, 0], [0, 1], [0, 2], [0, 3], [1, 1], [1, 2], [1, 3], [2, 2], [2, 3], [3, 3]]
+      ],
+      [
+        'yellow',
+        [[0, 4], [0, 5], [0, 6], [0, 7], [1, 4], [1, 5], [1, 6], [2, 4], [2, 5], [3, 4]]
+      ],
+      [
+        'red',
+        [[0, 8], [0, 9], [0, 10], [0, 11], [1, 9], [1, 10], [1, 11], [2, 10], [2, 11], [3, 11]]
+      ],
+      [
+        'blue',
+        [[0, 12], [0, 13], [0, 14], [0, 15], [1, 12], [1, 13], [1, 14], [2, 12], [2, 13], [3, 12]]
+      ],
+      [
+        'black',
+        [[9, 4], [9, 5], [9, 6], [9, 7], [10, 4], [10, 5], [10, 6], [11, 4], [11, 5], [12, 4]]
+      ],
+      [
+        'white',
+        [[9, 8], [9, 9], [10, 9], [9, 10], [10, 10], [11, 10], [9, 11], [10, 11], [11, 11], [12, 11]]
+      ]
     ]
   end
 end

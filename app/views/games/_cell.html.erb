@@ -7,4 +7,5 @@
   <% if cell.checker.present? %>
     <%= render(partial: 'checker', locals: { checker: cell.checker }) %>
   <% end %>
+  <%= c.hidden_field(:checker_id) %>
 <% end %>
