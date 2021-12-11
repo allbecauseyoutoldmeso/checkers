@@ -12,7 +12,7 @@ export default class extends Controller {
   }
 
   cableReceived(data) {
-    // update board
+    this.formTarget.outerHTML = data.form
   }
 
   drag(event) {
@@ -48,7 +48,7 @@ export default class extends Controller {
       url: form.action,
       data: new FormData(form),
       success: (data) => {
-        this.element.outerHTML = data.game
+        form.outerHTML = data.form
       }
     })
   }

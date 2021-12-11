@@ -12,13 +12,23 @@ class GamesController < ApplicationController
   def edit; end
 
   def update
-    # ActionCable.server.broadcast('game_channel', { cell: game_params[:cell] })
-
-    @game.update!(game_params)
-    render(json: { game: render_to_string(:edit) })
+    game.update!(game_params)
+    render(json: form_json)
+    ActionCable.server.broadcast('game_channel', form_json)
   end
 
   private
+
+  attr_reader :game
+
+  def form_json
+    {
+      form: render_to_string(
+        partial: 'form',
+        locals: { game: game }
+      )
+    }
+  end
 
   def assign_game
     @game = Game.find(params[:id])
