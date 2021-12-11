@@ -1,5 +1,5 @@
 <%= content_tag(:div, data: { controller: 'drag'}) do %>
-  <%= form_for(@game) do |f| %>
+  <%= form_for(@game, data: { drag_target: 'form' }) do |f| %>
     <%= content_tag(:div, class: 'flex-direction-column board') do %>
       <%= f.fields_for(:board) do |b| %>
         <% b.object.rows.each do |row| %>
@@ -11,6 +11,5 @@
         <% end %>
       <% end %>
     <% end %>
-    <%= f.submit %>
   <% end %>
 <% end %>

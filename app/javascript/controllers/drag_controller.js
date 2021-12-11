@@ -3,6 +3,8 @@ import { Controller } from 'stimulus'
 import consumer from '../channels/consumer'
 
 export default class extends Controller {
+  static targets = ['form']
+
   connect() {
     this.channel = consumer.subscriptions.create('GameChannel', {
       received: this.cableReceived.bind(this),
@@ -39,6 +41,15 @@ export default class extends Controller {
     destinationCell.getElementsByTagName('input')[0].value = value
     originCell.getElementsByTagName('input')[0].value = null
 
-    // submit form
+    const form = this.formTarget
+
+    Rails.ajax({
+      type: form.method,
+      url: form.action,
+      data: new FormData(form),
+      success: (data) => {
+        this.element.outerHTML = data.game
+      }
+    })
   }
 }
