@@ -1,10 +1,12 @@
-<%= form_for(game, data: { drag_target: 'form' }) do |f| %>
-  <%= content_tag(:div, class: 'flex-direction-column board') do %>
-    <%= f.fields_for(:board) do |b| %>
-      <% b.object.rows.each do |row| %>
-        <%= content_tag(:div, class: 'flex-direction-row') do %>
-          <%= b.fields_for(:cells, row) do |c| %>
-            <%= render(partial: 'cell', locals: { c: c, cell: c.object }) %>
+<%= content_tag(:div, data: { drag_target: 'partial' }) do %>
+  <%= form_for(game, data: { drag_target: 'form' }) do |f| %>
+    <%= content_tag(:div, class: 'flex-direction-column board') do %>
+      <%= f.fields_for(:board) do |b| %>
+        <% b.object.rows.each do |row| %>
+          <%= content_tag(:div, class: 'flex-direction-row') do %>
+            <%= b.fields_for(:cells, row) do |c| %>
+              <%= render(partial: 'cell', locals: { c: c, cell: c.object }) %>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>

@@ -3,7 +3,7 @@ import { Controller } from 'stimulus'
 import consumer from '../channels/consumer'
 
 export default class extends Controller {
-  static targets = ['form']
+  static targets = ['partial', 'form']
 
   connect() {
     this.channel = consumer.subscriptions.create('GameChannel', {
@@ -12,7 +12,7 @@ export default class extends Controller {
   }
 
   cableReceived(data) {
-    this.formTarget.outerHTML = data.form
+    this.partialTarget.outerHTML = data.partial
   }
 
   drag(event) {
@@ -21,7 +21,9 @@ export default class extends Controller {
   }
 
   allowDrop(event) {
-    event.preventDefault()
+    if(this.isEmptyCell(event.target)) {
+      event.preventDefault()
+    }
   }
 
   drop(event) {
@@ -30,6 +32,11 @@ export default class extends Controller {
     this.destinationCell.appendChild(this.checker)
     this.updateInputs()
     this.submitForm()
+  }
+
+  isEmptyCell(element) {
+    return element.classList.value.includes('cell') &&
+      element.childElementCount == 1
   }
 
   updateInputs() {
@@ -45,7 +52,10 @@ export default class extends Controller {
     Rails.ajax({
       type: form.method,
       url: form.action,
-      data: new FormData(form)
+      data: new FormData(form),
+      success: (data) => {
+        this.partialTarget.outerHTML = data.partial
+      }
     })
   }
 }

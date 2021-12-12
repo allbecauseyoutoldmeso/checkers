@@ -23,7 +23,7 @@ class GamesController < ApplicationController
 
   def form_json
     {
-      form: render_to_string(
+      partial: render_to_string(
         partial: 'form',
         locals: { game: game }
       )
