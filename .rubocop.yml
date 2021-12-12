@@ -10,11 +10,22 @@ Naming/VariableNumber:
   EnforcedStyle: snake_case
 Metrics/MethodLength:
   IgnoredMethods: [checker_positions]
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
 Rails/FilePath:
   EnforcedStyle: arguments
+Rails/CreateTableWithTimestamps:
+  Exclude:
+    - db/migrate/20211210190621_create_boards.rb
+    - db/migrate/20211210190627_create_cells.rb
+    - db/migrate/20211210190633_create_checkers.rb
+Layout/LineLength:
+  Exclude:
+    - spec/models/game_factory_spec.rb
 RSpec/Capybara/FeatureMethods:
   EnabledMethods: [feature, scenario]
 RSpec/MultipleExpectations:
   Enabled: false
-Rails/CreateTableWithTimestamps:
+RSpec/ExampleLength:
   Enabled: false

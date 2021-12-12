@@ -14,6 +14,7 @@ gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 
 group :development, :test do
+  gem 'factory_bot_rails', '~> 6.2'
   gem 'pry', '~> 0.14'
   gem 'rspec-rails', '~> 5.0'
   gem 'rubocop', '~> 1.23'

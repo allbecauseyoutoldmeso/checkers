@@ -45,10 +45,7 @@ export default class extends Controller {
     Rails.ajax({
       type: form.method,
       url: form.action,
-      data: new FormData(form),
-      success: (data) => {
-        form.outerHTML = data.form
-      }
+      data: new FormData(form)
     })
   }
 }

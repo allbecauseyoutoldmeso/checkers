@@ -35,6 +35,6 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(board_attributes: [:id, cells_attributes: {}])
+    params.require(:game).permit(board_attributes: [:id, { cells_attributes: {} }])
   end
 end

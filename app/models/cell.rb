@@ -9,6 +9,6 @@ class Cell < ApplicationRecord
   end
 
   def checker_id=(id)
-    self.checker = board.checkers.find(id) if id.present?
+    self.checker = Checker.find(id) if id.present?
   end
 end
