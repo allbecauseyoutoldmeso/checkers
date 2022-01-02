@@ -57,5 +57,19 @@ $checker-white: #808080;
   border-radius: 50%;
   background-color: #b8b8b8;
   box-shadow: inset 0 0 10px white;
-  margin: 9px 10px;
+  margin: 8px 10px;
+}
+
+input[type='submit'] {
+  border: none;
+  background: none;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: inset 0 0 10px $checker-green;
+  color: $checker-green;
+  font-size: 30px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
